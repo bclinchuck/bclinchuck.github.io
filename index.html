@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brandon Linchuck — Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #1a1815;
+      --ink-mid:    #4a4640;
+      --ink-soft:   #8a8480;
+      --paper:      #f7f4ef;
+      --paper-mid:  #ede9e2;
+      --accent:     #c84b2f;
+      --accent-dim: #e8c4bb;
+      --rule:       #d8d4cc;
+      --sky:        #b2c9eb;
+      --royal:      #347deb;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ─────────────────────────────────── */
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Header ─────────────────────────────────── */
+    header {
+      padding: 5rem 0 3.5rem;
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: end;
+    }
+
+    .header-left {}
+
+    .eyebrow {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 7vw, 4.4rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 1.1rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .tagline {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--ink-mid);
+      max-width: 420px;
+      line-height: 1.55;
+    }
+
+    .contact-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      align-items: flex-end;
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+
+    .contact-block a {
+      color: var(--ink-mid);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .contact-block a:hover { color: var(--accent); }
+
+    /* ── Navigation dots ─────────────────────────── */
+    .nav-strip {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-strip a {
+      color: var(--ink-soft);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-strip a:hover { color: var(--accent); }
+
+    /* ── Section ─────────────────────────────────── */
+    section {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    /* ── About ───────────────────────────────────── */
+    .about-text {
+      font-size: 1.08rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--ink-mid);
+      max-width: 600px;
+    }
+
+    .about-text strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ── Skills grid ─────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.6rem;
+    }
+
+    .skill-tag {
+      background: var(--paper-mid);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 0.55rem 0.9rem;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--ink-mid);
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--accent-dim);
+      color: var(--accent);
+    }
+
+    /* ── Experience entries ───────────────────────── */
+    .entries { display: flex; flex-direction: column; gap: 2.5rem; }
+
+    .entry {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 1.5rem;
+    }
+
+    .entry-meta {
+      padding-top: 2px;
+    }
+
+    .entry-date {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--ink-soft);
+      line-height: 1.4;
+    }
+
+    .entry-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.15rem;
+    }
+
+    .entry-org {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+
+    .entry-body {
+      font-size: 14px;
+      color: var(--ink-mid);
+      line-height: 1.65;
+    }
+
+    .entry-body ul {
+      padding-left: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .entry-body li::marker { color: var(--accent); }
+
+    /* ── Projects ────────────────────────────────── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .project-card {
+      background: var(--paper-mid);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 1.4rem;
+      transition: border-color 0.15s, transform 0.15s;
+      text-decoration: none;
+      display: block;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent-dim);
+      transform: translateY(-2px);
+    }
+
+    .project-card-title {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-card-desc {
+      font-size: 13px;
+      color: var(--ink-mid);
+      line-height: 1.55;
+      margin-bottom: 0.8rem;
+    }
+
+    .project-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+    }
+
+    /* ── Education ───────────────────────────────── */
+    .edu-entry {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 1.5rem;
+      padding-bottom: 1.8rem;
+      margin-bottom: 1.8rem;
+      border-bottom: 1px solid var(--paper-mid);
+    }
+
+    .edu-entry:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+
+    /* ── Footer ──────────────────────────────────── */
+    footer {
+      padding: 2.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+
+    footer a {
+      color: var(--ink-soft);
+      text-decoration: none;
+    }
+
+    footer a:hover { color: var(--accent); }
+
+    /* ── Animations ──────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    header, .nav-strip, section {
+      animation: fadeUp 0.5s ease both;
+    }
+
+    header        { animation-delay: 0.05s; }
+    .nav-strip    { animation-delay: 0.15s; }
+    section:nth-of-type(1) { animation-delay: 0.22s; }
+    section:nth-of-type(2) { animation-delay: 0.29s; }
+    section:nth-of-type(3) { animation-delay: 0.36s; }
+    section:nth-of-type(4) { animation-delay: 0.43s; }
+    section:nth-of-type(5) { animation-delay: 0.50s; }
+
+    /* ── Responsive ──────────────────────────────── */
+    @media (max-width: 600px) {
+      header { grid-template-columns: 1fr; }
+      .contact-block { align-items: flex-start; }
+      .entry { grid-template-columns: 1fr; gap: 0.4rem; }
+      .edu-entry { grid-template-columns: 1fr; gap: 0.4rem; }
+      .nav-strip { flex-wrap: wrap; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── Header ── -->
+  <header>
+    <div class="header-left">
+      <p class="eyebrow">Resume</p>
+      <h1>Brandon Linchuck</h1>
+      <p class="tagline">Software engineer with a passion for building clean, user-focused products. Looking for my next great team.</p>
+    </div>
+    <div class="contact-block">
+      <a href="mailto:you@email.com">you@email.com</a>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a>
+      <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a>
+      <span>Charleston, SC</span>
+    </div>
+  </header>
+
+  <!-- ── Nav ── -->
+  <nav class="nav-strip">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+  </nav>
+
+  <!-- ── About ── -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <p class="about-text">
+      I'm a <strong>software engineer</strong> based in Charleston, SC with 3 years of experience building
+      web applications. I care about <strong>clean code</strong>, thoughtful UX, and products that actually
+      solve real problems. When I'm not at my keyboard I'm probably hiking, reading, or tinkering with a
+      side project.
+    </p>
+  </section>
+
+  <!-- ── Skills ── -->
+  <section id="skills">
+    <p class="section-label">Skills</p>
+    <div class="skills-grid">
+      <div class="skill-tag">JavaScript</div>
+      <div class="skill-tag">TypeScript</div>
+      <div class="skill-tag">React</div>
+      <div class="skill-tag">Node.js</div>
+      <div class="skill-tag">Python</div>
+      <div class="skill-tag">PostgreSQL</div>
+      <div class="skill-tag">REST APIs</div>
+      <div class="skill-tag">Git & GitHub</div>
+      <div class="skill-tag">HTML & CSS</div>
+      <div class="skill-tag">Figma</div>
+      <div class="skill-tag">Docker</div>
+      <div class="skill-tag">AWS</div>
+    </div>
+  </section>
+
+  <!-- ── Experience ── -->
+  <section id="experience">
+    <p class="section-label">Experience</p>
+    <div class="entries">
+
+      <div class="entry">
+        <div class="entry-meta">
+          <p class="entry-date">Jan 2023 –<br>Present</p>
+        </div>
+        <div>
+          <p class="entry-title">Software Engineer</p>
+          <p class="entry-org">Acme Corp · Full-time</p>
+          <div class="entry-body">
+            <ul>
+              <li>Built and maintained a customer-facing dashboard used by 10k+ monthly active users.</li>
+              <li>Reduced page load time by 40% through code splitting and image optimization.</li>
+              <li>Collaborated with design and product teams in an agile environment.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-meta">
+          <p class="entry-date">May 2022 –<br>Dec 2022</p>
+        </div>
+        <div>
+          <p class="entry-title">Junior Developer</p>
+          <p class="entry-org">Startup Inc · Contract</p>
+          <div class="entry-body">
+            <ul>
+              <li>Developed RESTful APIs in Node.js and integrated third-party payment providers.</li>
+              <li>Wrote unit and integration tests, bringing coverage from 40% to 85%.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Projects ── -->
+  <section id="projects">
+    <p class="section-label">Projects</p>
+    <div class="projects-grid">
+
+      <a class="project-card" href="https://github.com/yourusername/project-one" target="_blank">
+        <p class="project-card-title">Project One</p>
+        <p class="project-card-desc">A web app that does something cool. Built during a weekend hackathon and got 200+ stars on GitHub.</p>
+        <div class="project-card-tags">
+          <span class="tag">React</span>
+          <span class="tag">Firebase</span>
+        </div>
+      </a>
+
+      <a class="project-card" href="https://github.com/yourusername/project-two" target="_blank">
+        <p class="project-card-title">Project Two</p>
+        <p class="project-card-desc">An open-source CLI tool for automating repetitive tasks. 500+ downloads on npm.</p>
+        <div class="project-card-tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">CLI</span>
+        </div>
+      </a>
+
+      <a class="project-card" href="https://github.com/yourusername/project-three" target="_blank">
+        <p class="project-card-title">Project Three</p>
+        <p class="project-card-desc">Machine learning experiment exploring sentiment analysis on social media data.</p>
+        <div class="project-card-tags">
+          <span class="tag">Python</span>
+          <span class="tag">ML</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ── Education ── -->
+  <section id="education">
+    <p class="section-label">Education</p>
+
+    <div class="edu-entry">
+      <div class="entry-meta">
+        <p class="entry-date">2018 – 2022</p>
+      </div>
+      <div>
+        <p class="entry-title">B.S. Computer Science</p>
+        <p class="entry-org">University of South Carolina</p>
+        <p class="entry-body">GPA 3.8 · Dean's List · Senior thesis on distributed caching systems.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <span>© 2026 Your Name</span>
+    <span>Built with plain HTML & CSS · Hosted on GitHub Pages</span>
+  </footer>
+
+</div>
+</body>
+</html>
